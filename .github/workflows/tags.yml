@@ -18,4 +18,10 @@ jobs:
     # Runs a single command using the runners shell
     - name: start 
       run: echo Hello, world!
+    - name: Cleanup
+      run: ./gradlew clean
+    - name: Build
+      run: ./gradlew build
+    - name: publish
+      run: ./gradlew publish 
       
