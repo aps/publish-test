@@ -18,9 +18,5 @@ jobs:
         run: ./gradlew clean
       - name: Build project
         run: ./gradlew build
-
-  publish:
-    needs: build
-    steps:
       - name: Publish artifacts
         run: ./gradlew publish
