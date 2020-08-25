@@ -1,27 +1,26 @@
-# This is a basic workflow to help you get started with Actions
+name: D4L Publish Artifact
 
-name: CI
-
-# Controls when the action will run. Triggers the workflow on push or pull request
-# events but only for the master branch
 on:
   push:
-    tags: 
-      - 'v*' 
+    tags:
+      - 'v*'
 
 jobs:
   build:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v2
 
-    # Runs a single command using the runners shell
-    - name: start 
-      run: echo Hello, world!
-    - name: Cleanup
-      run: ./gradlew clean
-    - name: Build
-      run: ./gradlew build
-    - name: publish
-      run: ./gradlew publish 
-      
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Display runner context
+        run: hostname -s
+      - uses: actions/checkout@v2
+      - name: Cleanup
+        run: ./gradlew clean
+      - name: Build project
+        run: ./gradlew build
+
+  publish:
+    - needs: [build]
+    - steps:
+        - name: Publish artifacts
+          run: ./gradlew publish
