@@ -12,8 +12,8 @@ android {
         minSdkVersion(21)
         targetSdkVersion(29)
 
-        versionCode = 3
-        versionName = "0.3"
+        versionCode = 4
+        versionName = "0.4"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -73,7 +73,7 @@ afterEvaluate {
             create<MavenPublication>("maven") {
                 groupId = "com.github.aps"
                 artifactId = "publish-test"
-                version = "0.3"
+                version = "0.4"
                 from(components["release"])
             }
         }
