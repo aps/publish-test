@@ -6,9 +6,13 @@ on:
       - 'v*'
 
 jobs:
-  build:
+  build-and-publish:
 
     runs-on: ubuntu-latest
+
+    env:
+      USERNAME: ${{ secrets.USERNAME }}
+      TOKEN: ${{ secrets.TOKEN }}
 
     steps:
       - name: Display runner context
@@ -20,6 +24,4 @@ jobs:
         run: ./gradlew build
       - name: Publish artifacts
         run: ./gradlew publish
-        env:
-          USERNAME: ${{ secrets.USERNAME }}
-          TOKEN: ${{ secrets.TOKEN }}
+
