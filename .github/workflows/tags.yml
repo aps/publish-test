@@ -4,15 +4,15 @@ on:
   push:
     tags:
       - 'v*'
-
-jobs:
-  build-and-publish:
-
+  workflow_dispatch:
     inputs:
       branchName:
         description: 'Name of the Branch to checkout'
         required: false
         default: 'master'
+
+jobs:
+  build-and-publish:
 
     runs-on: ubuntu-latest
 
@@ -25,7 +25,7 @@ jobs:
         run: hostname -s
       - uses: actions/checkout@v2
         with:
-          ref: ${{ INPUT_BRANCHNAME }}
+          ref: ${{ github.event.inputs.branchName }}
       - name: Cleanup
         run: ./gradlew clean
       - name: Build project
